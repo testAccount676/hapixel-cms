@@ -64,7 +64,7 @@ export default function News(props: ArticlesPageProps) {
                   style={{
                     padding: "122px 8px 8px",
                     background:
-                      "linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1)), url(https://www.habboassets.com/assets/images/web-promos/lpromo_greengamejam2_jun25.png) center center / cover no-repeat",
+                      `linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1)), url(${article.image}) center center / cover no-repeat`,
                   }}
                 >
                   <h1 className="text-sm font-semibold text-zinc-50">{article.title}</h1>
