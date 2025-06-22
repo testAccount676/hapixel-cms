@@ -32,7 +32,9 @@ function TitleBox({
 
   return (
     <div className="flex w-full flex-col justify-between lg:h-16 lg:flex-row">
-      <div className={`flex h-full items-center pr-6 justify-start rounded-md bg-zinc-100 ${hasChildren ? "w-full lg:w-2/3" : "w-full"}`}>
+      <div
+        className={`flex h-full items-center justify-start rounded-md bg-gradient-to-r from-zinc-100 to-zinc-50/90 pr-6 ${hasChildren ? "w-full lg:w-2/3" : "w-full"}`}
+      >
         <div className={`flex h-full w-18 items-center ${imageIsBadge ? "justify-center" : "justify-start"}`}>
           {icon && <i className={`icon h-10 w-10 bg-[url('/assets/images/box/articles.gif')] bg-no-repeat`}></i>}
 

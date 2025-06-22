@@ -6,7 +6,7 @@ import AppLayout from "@/layouts/app-layout";
 import { SharedData } from "@/types";
 import { Article } from "@/types/article";
 import { formatDate } from "@/utils";
-import { Head, Link, router, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
 interface MePageProps {
@@ -56,26 +56,20 @@ export default function CurrentUser({ articles }: MePageProps) {
                 >
                   <CarouselContent>
                     {articles.map((article, index) => (
-                      
                       <CarouselItem className="cursor-pointer" key={index}>
                         <Link href={`/community/news/${article.id}`}>
-                        <div className="relative overflow-hidden">
-                          <img
-                            className="h-36 w-full sm:w-full sm:object-cover"
-                            src={article.image}
-                            alt={article.title}
-                          />
-                          <div className="absolute inset-0 flex flex-col justify-end bg-black/20 p-4 text-white">
-                            <h3 className="text-lg font-semibold">{article.title}</h3>
-                            <p className="text-sm">{article.short_story}</p>
-                            <div className="mt-2">
-                              <p className="text-xs">por {article.author.username}</p>
+                          <div className="relative overflow-hidden">
+                            <img className="h-36 w-full sm:w-full sm:object-cover" src={article.image} alt={article.title} />
+                            <div className="absolute inset-0 flex flex-col justify-end bg-black/20 p-4 text-white">
+                              <h3 className="text-lg font-semibold">{article.title}</h3>
+                              <p className="text-sm">{article.short_story}</p>
+                              <div className="mt-2">
+                                <p className="text-xs">por {article.author.username}</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
                         </Link>
                       </CarouselItem>
-                      
                     ))}
                   </CarouselContent>
                 </Carousel>

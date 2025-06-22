@@ -100,7 +100,7 @@ export default function DiscordWidget() {
               }[member.status];
 
               return (
-                <div className="flex max-h-[15rem] flex-col overflow-y-auto">
+                <div key={member.id} className="flex max-h-[15rem] flex-col overflow-y-auto">
                   <div className="relative flex h-11 items-center gap-2 p-1 odd:bg-gray-100 dark:odd:bg-slate-900">
                     <div
                       className="rendering-quality h-8 w-8 rounded-full bg-cover bg-center bg-no-repeat"

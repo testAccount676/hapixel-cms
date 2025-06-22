@@ -12,15 +12,10 @@ class ShopController extends Controller
 {
     public function show(Request $request): Response
     {
-        $vips = Vip::with('rewards')->get();
+        $vips = Vip::all();
 
         return Inertia::render('shop/index', [
             'vips' => $vips,
         ]);
-    }
-
-    public function sendVip($player)
-    {
-        // TODO: Implement RCON
     }
 }

@@ -8,9 +8,11 @@ use App\Http\Controllers\Community\Leaderboard\LeaderboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MeController;
-use App\Http\Controllers\MercadoPagoController;
 use App\Http\Controllers\NitroController;
+use App\Http\Controllers\Settings\PreferencesController;
+use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\Settings\SecurityController;
 use App\Http\Controllers\ShopController;
 use App\Http\Middleware\MaintenanceMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +32,6 @@ Route::middleware(MaintenanceMiddleware::class)->group(function () {
 
     Route::prefix('shop')->group(function () {
         Route::get('/', [ShopController::class, 'show'])->name('shop.index');
-
-        Route::post('/payment', [MercadoPagoController::class, 'generatePayment'])->name('shop.payment');
     });
 
     Route::middleware(['guest'])->group(function () {
@@ -49,12 +49,19 @@ Route::middleware(MaintenanceMiddleware::class)->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::prefix('users')->group(function () {
             Route::get('/me', MeController::class)->name('users.me');
-            Route::get('/me/profile', function() {
-                return Inertia::render('users/current-profile');
-            });
+            Route::get('/me/profile', \App\Http\Controllers\ProfileController::class);
+            
             Route::get('/me/settings', function() {
                 return Inertia::render('users/settings');
-            });
+            })->name("users.me.settings");
+            Route::patch("/me/settings", [ProfileController::class, 'update'])->name("profile.update");
+            Route::delete("/me/settings", [ProfileController::class, "destroy"])->name("profile.destroy");
+
+            Route::get("/me/settings/preferences", PreferencesController::class);
+            Route::put("/me/settings/preferences", [PreferencesController::class, "update"])->name("preferences.update");
+
+            Route::get("/me/settings/security", SecurityController::class);
+            Route::put("/me/settings/security", [SecurityController::class, "update"]);
         });
 
         Route::post('/logout', [SessionController::class, 'destroy']);

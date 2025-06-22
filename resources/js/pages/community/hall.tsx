@@ -1,7 +1,7 @@
 import { TitleBox } from "@/components/title-box";
 import AppLayout from "@/layouts/app-layout";
 import { User } from "@/types";
-import { Head, usePage } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
 interface HallPageProps {
@@ -11,7 +11,6 @@ interface HallPageProps {
 }
 
 export default function Hall({ topCredits, topDiamonds, topDuckets }: HallPageProps) {
-
   return (
     <>
       <AppLayout>

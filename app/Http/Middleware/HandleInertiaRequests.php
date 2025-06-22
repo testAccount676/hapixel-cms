@@ -48,7 +48,8 @@ class HandleInertiaRequests extends Middleware
                 'dashboard_url' => setting('dashboard_url'),
                 // 'nitro_path' => setting('nitro_path'),
                 'dashboard_min_rank' => setting('dashboard_min_rank'),
-            ]
+            ],
+            'csrf_token' => csrf_token(),
         ];
     }
 }

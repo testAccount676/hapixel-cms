@@ -2,13 +2,54 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import AppLayout from "@/layouts/app-layout";
-import { Head } from "@inertiajs/react";
+import { SharedData } from "@/types";
+import { Head, usePage } from "@inertiajs/react";
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 import { BsCartCheck } from "react-icons/bs";
 import { IoIosAlert } from "react-icons/io";
+import { toast } from "sonner";
 
-export default function Shop() {
+type Vip = {
+  id: number;
+  vip_name: string;
+  vip_price: number;
+  vip_desc: string;
+};
+
+interface ShopPageProps {
+  vips: Vip[];
+}
+
+export default function Shop({ vips }: ShopPageProps) {
+  const props = usePage<SharedData>().props;
+
+  async function handleBuy(vip_id: number) {
+    try {
+      // TODO: Check for the VIP and their related informations for security.
+      // Send the price/quantity in the request body is not appropriated.
+
+      const response = await fetch("/api/mercadopago/payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-XSRF-TOKEN": props.csrf_token,
+        },
+        body: JSON.stringify({ vip_id, user_id: props.auth.user.id }),
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Ocorreu um erro ao gerar seu pagamento", {
+        description: "Entre em contato com um administrador.",
+      });
+    }
+  }
+
   return (
     <>
       <AppLayout>
@@ -150,72 +191,40 @@ export default function Shop() {
               </div>
 
               <div className="flex h-fit w-full flex-row flex-wrap gap-x-4 gap-y-1">
-                <motion.div
-                  className="w-[45%]"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                  <Card className="border-none">
-                    <CardHeader>
-                      <CardTitle>
+                {vips.map((vip, i) => (
+                  <motion.div
+                    className="w-[45%]"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  >
+                    <Card className="border-none">
+                      <CardHeader>
+                        <CardTitle>
+                          <p className="flex items-center gap-x-2">
+                            {vip.vip_name} <img className="h-8 w-8" src="https://www.habboassets.com/assets/badges/DE89K.gif" />{" "}
+                          </p>
+                        </CardTitle>
+                        <CardDescription>{vip.vip_desc}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="h-[90px]">
+                          <h2 className="text-3xl font-bold">R$ {vip.vip_price}</h2>
+                          <Button onClick={() => handleBuy(vip.id)} className="mt-3.5 flex cursor-pointer items-center gap-x-2">
+                            Adquirir <BsCartCheck />
+                          </Button>
+                        </div>
+                      </CardContent>
+
+                      <CardFooter className="text-sm">
                         <p className="flex items-center gap-x-2">
-                          VIP 1 - Plano Básico <img className="h-8 w-8" src="https://www.habboassets.com/assets/badges/DE88K.gif" />{" "}
+                          Detalhes do Plano <IoIosAlert size={18} />
                         </p>
-                      </CardTitle>
-                      <CardDescription>O plano ideal para começar</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-[90px]">
-                        <h2 className="text-3xl font-bold">R$ 19.90</h2>
-
-                        <Button className="mt-3.5 flex cursor-pointer items-center gap-x-2">
-                          Adquirir <BsCartCheck />
-                        </Button>
-                      </div>
-                    </CardContent>
-
-                    <CardFooter className="text-sm">
-                      <p className="flex items-center gap-x-2">
-                        Detalhes do Plano <IoIosAlert size={18} />
-                      </p>
-                    </CardFooter>
-                  </Card>
-                </motion.div>
-
-                <motion.div
-                  className="w-[45%]"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                  <Card className="border-none">
-                    <CardHeader>
-                      <CardTitle>
-                        <p className="flex items-center gap-x-2">
-                          VIP 2 - Plano Premium <img className="h-8 w-8" src="https://www.habboassets.com/assets/badges/DE89K.gif" />{" "}
-                        </p>
-                      </CardTitle>
-                      <CardDescription>O plano ideal para tryhardar</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-[90px]">
-                        <h2 className="text-3xl font-bold">R$ 29.90</h2>
-                        <Button className="mt-3.5 flex cursor-pointer items-center gap-x-2">
-                          Adquirir <BsCartCheck />
-                        </Button>
-                      </div>
-                    </CardContent>
-
-                    <CardFooter className="text-sm">
-                      <p className="flex items-center gap-x-2">
-                        Detalhes do Plano <IoIosAlert size={18} />
-                      </p>
-                    </CardFooter>
-                  </Card>
-                </motion.div>
+                      </CardFooter>
+                    </Card>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>

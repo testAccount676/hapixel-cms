@@ -63,8 +63,7 @@ export default function News(props: ArticlesPageProps) {
                   className="flex h-[146px] w-[257px] flex-col justify-end rounded-md text-black duration-300 hover:scale-105"
                   style={{
                     padding: "122px 8px 8px",
-                    background:
-                      `linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1)), url(${article.image}) center center / cover no-repeat`,
+                    background: `linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1)), url(${article.image}) center center / cover no-repeat`,
                   }}
                 >
                   <h1 className="text-sm font-semibold text-zinc-50">{article.title}</h1>

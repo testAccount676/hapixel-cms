@@ -4,9 +4,10 @@ interface NewsCardProps {
   author: string;
   id: number;
   description: string;
+  image: string;
 }
 
-const NewsCard = ({ author, description }: NewsCardProps) => {
+const NewsCard = ({ author, description, image }: NewsCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
@@ -15,12 +16,12 @@ const NewsCard = ({ author, description }: NewsCardProps) => {
         duration: 0.4,
         scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
       }}
-      className="max-w-xs w-80 not-even:cursor-pointer overflow-hidden rounded-2xl bg-white text-gray-700 shadow-lg duration-200 hover:-translate-y-1"
+      className="w-80 max-w-xs overflow-hidden rounded-2xl bg-white text-gray-700 shadow-lg duration-200 not-even:cursor-pointer hover:-translate-y-1"
     >
       <div
         className="relative h-32 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://www.habboassets.com/assets/images/web-promos/lpromo_habbionmorealis240425.png')",
+          backgroundImage: `url(${image})`,
         }}
       ></div>
       <div className="space-y-2 p-4 pt-2 text-xs">

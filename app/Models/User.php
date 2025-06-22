@@ -27,6 +27,8 @@ class User extends Authenticatable
         'gender',
         'public_id',
         'auth_ticket',
+        'motto',
+        'deleted',
     ];
 
     /**

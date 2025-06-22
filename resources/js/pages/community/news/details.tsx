@@ -186,102 +186,93 @@ export default function NewsDetails({ article, allArticles }: ArticlePageDetails
               <div className="w-full">
                 <div className="mb-2.5 rounded-b-md shadow-md">
                   <div
-                    className="rounded-t px-3.5 py-2.5 text-[1.1rem] font-medium tracking-[.7px] text-white shadow-sm [text-shadow:_1px_1px_2px_rgb(0_0_0_/_25%)] bg-cover bg-center"
+                    className="rounded-t bg-cover bg-center px-3.5 py-2.5 text-[1.1rem] font-medium tracking-[.7px] text-white shadow-sm [text-shadow:_1px_1px_2px_rgb(0_0_0_/_25%)]"
                     style={{ backgroundImage: `url(${article.image})` }}
                   >
                     {article.title}
                   </div>
-                  <article
-                    className="prose lg:prose-xl text-sm relative h-full w-[541px] overflow-y-auto border-none bg-white bg-cover px-3.5 py-2.5 pb-[50px] text-black"
-
-                  >
+                  <article className="prose lg:prose-xl relative h-full w-[541px] overflow-y-auto border-none bg-white bg-cover px-3.5 py-2.5 pb-[50px] text-sm text-black">
                     <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.long_story) }}></div>
                   </article>
                 </div>
 
-                <div className="bg-white rounded-md p-2 shadow-md">
-  <div className="flex items-center justify-between">
-   
-    <div className="flex items-center gap-2 text-xs">
-      <div
-        className="flex h-[57px] w-[57px] items-center overflow-hidden rounded-full bg-cover bg-no-repeat"
-        style={{
-          background: `linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1))`,
-        }}
-      >
-        <img
-          className="h-[55px] w-[64px] object-none object-[center_-30px]"
-          src={`https://www.habblet.city/habblet-imaging/avatarimage?figure=${article.author.figure}&direction=2&head_direction=3&gesture=sml`}
-          alt=""
-        />
-      </div>
-      <div>
-        <div className="flex items-center gap-1 font-bold text-gray-500">
-          <img src="/assets/images/lapis.png" className="w-4" />
-          {article.author.username}
-        </div>
-        <div className="flex items-center gap-1 text-gray-500">
-          <img src="/assets/images/time.png" className="w-4" />
-          {articleFormattedDate}
-        </div>
-        <div className="flex items-center mt-1 gap-1">
-          <span className="bg-blue-100 p-1 text-blue-800 rounded text-[10px]">
-            {"Hapixel Hotel".toUpperCase()}
-          </span>
-        </div>
-      </div>
-    </div>
+                <div className="rounded-md bg-white p-2 shadow-md">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs">
+                      <div
+                        className="flex h-[57px] w-[57px] items-center overflow-hidden rounded-full bg-cover bg-no-repeat"
+                        style={{
+                          background: `linear-gradient(to top, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.1))`,
+                        }}
+                      >
+                        <img
+                          className="h-[55px] w-[64px] object-none object-[center_-30px]"
+                          src={`https://www.habblet.city/habblet-imaging/avatarimage?figure=${article.author.figure}&direction=2&head_direction=3&gesture=sml`}
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1 font-bold text-gray-500">
+                          <img src="/assets/images/lapis.png" className="w-4" />
+                          {article.author.username}
+                        </div>
+                        <div className="flex items-center gap-1 text-gray-500">
+                          <img src="/assets/images/time.png" className="w-4" />
+                          {articleFormattedDate}
+                        </div>
+                        <div className="mt-1 flex items-center gap-1">
+                          <span className="rounded bg-blue-100 p-1 text-[10px] text-blue-800">{"Hapixel Hotel".toUpperCase()}</span>
+                        </div>
+                      </div>
+                    </div>
 
-    
-    <div className="flex items-center gap-2">
-      <Button className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 hover:bg-emerald-400">
-        <ThumbsUp size={24} />
-      </Button>
-      <Button className="flex h-10 w-10 items-center justify-center rounded-full bg-red-400 hover:bg-red-300">
-        <ThumbsDown size={24} />
-      </Button>
-    </div>
-  </div>
+                    <div className="flex items-center gap-2">
+                      <Button className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 hover:bg-emerald-400">
+                        <ThumbsUp size={24} />
+                      </Button>
+                      <Button className="flex h-10 w-10 items-center justify-center rounded-full bg-red-400 hover:bg-red-300">
+                        <ThumbsDown size={24} />
+                      </Button>
+                    </div>
+                  </div>
 
-  
-  <div className="flex gap-2 mt-4">
-    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600">
-      <img
-        className="h-[55px] w-[64px] object-none object-[center_-30px]"
-        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
-      />
-    </div>
+                  <div className="mt-4 flex gap-2">
+                    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600">
+                      <img
+                        className="h-[55px] w-[64px] object-none object-[center_-30px]"
+                        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
+                      />
+                    </div>
 
-    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600">
-      <img
-        className="h-[55px] w-[64px] object-none object-[center_-30px]"
-        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
-      />
-    </div>
+                    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600">
+                      <img
+                        className="h-[55px] w-[64px] object-none object-[center_-30px]"
+                        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
+                      />
+                    </div>
 
-    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600">
-      <img
-        className="h-[55px] w-[64px] object-none object-[center_-30px]"
-        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
-      />
-    </div>
+                    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600">
+                      <img
+                        className="h-[55px] w-[64px] object-none object-[center_-30px]"
+                        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
+                      />
+                    </div>
 
-    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600">
-      <img
-        className="h-[55px] w-[64px] object-none object-[center_-30px]"
-        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
-      />
-    </div>
+                    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-600">
+                      <img
+                        className="h-[55px] w-[64px] object-none object-[center_-30px]"
+                        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
+                      />
+                    </div>
 
-    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-red-400 via-red-500 to-red-600">
-      <img
-        className="h-[55px] w-[64px] object-none object-[center_-30px]"
-        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
-      />
-    </div>
-  </div>
-</div>
-
+                    <div className="flex h-[57px] w-[57px] items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-red-400 via-red-500 to-red-600">
+                      <img
+                        className="h-[55px] w-[64px] object-none object-[center_-30px]"
+                        src="https://www.habblet.city/habblet-imaging/avatarimage?figure=hd-180-1.ch-3030-64.lg-275-62.sh-295-62&direction=2&head_direction=3&gesture=sml"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
